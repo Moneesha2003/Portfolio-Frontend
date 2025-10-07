@@ -364,6 +364,166 @@ p {
   color: var(--color-gray);
 }
 
+.card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.card li {
+  margin-bottom: var(--spacing-sm);
+  padding-bottom: var(--spacing-sm);
+  border-bottom: 1px solid var(--color-beige);
+}
+
+.card li:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.card li strong {
+  color: var(--color-primary);
+  font-weight: 600;
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+.card li br {
+  display: none; /* Hide line breaks since we're using proper list structure */
+}
+
+.education-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-md);
+}
+
+.education-card {
+  background: var(--color-white);
+  border: 1px solid var(--color-beige);
+  border-radius: 8px;
+  padding: var(--spacing-md);
+  transition: var(--transition-base);
+  box-shadow: var(--shadow-sm);
+  height: fit-content;
+}
+
+.education-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-accent);
+}
+
+.education-card .card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--spacing-sm);
+  gap: var(--spacing-xs);
+}
+
+.education-card .card-header h5 {
+  margin: 0;
+  color: var(--color-primary);
+  font-size: 1rem;
+  line-height: 1.4;
+  flex: 1;
+}
+
+.education-card .year {
+  background: var(--color-accent);
+  color: var(--color-white);
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.education-card .institution {
+  font-weight: 600;
+  color: var(--color-secondary);
+  margin-bottom: 0.2rem;
+  font-size: 0.95rem;
+}
+
+.education-card .campus {
+  color: var(--color-gray);
+  font-size: 0.9rem;
+  margin-bottom: var(--spacing-sm);
+  line-height: 1.4;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 0.3rem 0.8rem;
+  border-radius: 15px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.status-badge.completed {
+  background: #e8f5e8;
+  color: #2e7d32;
+  border: 1px solid #c8e6c9;
+}
+
+.status-badge.pending {
+  background: #fff3e0;
+  color: #ef6c00;
+  border: 1px solid #ffe0b2;
+}
+
+.about-cards {
+  display: grid;
+  grid-template-columns: 1fr 2fr; /* Tools section takes 1 part, Education takes 2 parts */
+  gap: var(--spacing-md);
+  margin: var(--spacing-lg) 0;
+}
+
+/* Tools card remains single column */
+.about-cards .card:first-child {
+  grid-column: 1;
+}
+
+/* Education card spans the wider column */
+.about-cards .card:last-child {
+  grid-column: 2;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .about-cards {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-lg);
+  }
+  
+  .about-cards .card:first-child,
+  .about-cards .card:last-child {
+    grid-column: 1;
+  }
+  
+  .education-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-sm);
+  }
+  
+  .education-card .card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--spacing-xs);
+  }
+  
+  .education-card .year {
+    align-self: flex-start;
+  }
+}
+
 .about-cta {
   margin-top: var(--spacing-lg);
 }

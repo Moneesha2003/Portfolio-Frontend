@@ -208,15 +208,69 @@ export default function Home() {
                         </div>
 
                         {/* Info cards */}
-                        <div className="about-cards">
-                            <div className="card">
-                                <h4>Education</h4>
-                                <p>BSc (Hons) Software Engineering — Cardiff Metropolitan University (ICBT)</p>
-                            </div>
+                        <div className="about-cards"></div>
+                        <div class="card">
+                            <h4>Education</h4>
+                            <div class="education-grid">
+                                <div class="education-card">
+                                    <div class="card-header">
+                                        <h5>BSc (Hons) Software Engineering</h5>
+                                        <span class="year">2024-2025</span>
+                                    </div>
+                                    <p class="institution">Cardiff Metropolitan University (UK)</p>
+                                    <p class="campus">ICBT Campus, Nugegoda</p>
+                                    <div class="status-badge pending">Results Pending</div>
+                                </div>
 
-                            <div className="card">
-                                <h4>Tools & APIs</h4>
-                                <p>VS Code · Git · REST APIs · scikit-learn · Flask ML services</p>
+                                <div class="education-card">
+                                    <div class="card-header">
+                                        <h5>Higher Diploma in Computing & Software Engineering</h5>
+                                        <span class="year">2023-2024</span>
+                                    </div>
+                                    <p class="institution">Cardiff Metropolitan University (UK)</p>
+                                    <p class="campus">ICBT Campus, Nugegoda</p>
+                                    <div class="status-badge completed">Completed</div>
+                                </div>
+
+                                <div class="education-card">
+                                    <div class="card-header">
+                                        <h5>Diploma in IT (International)</h5>
+                                        <span class="year">2020</span>
+                                    </div>
+                                    <p class="institution">Esoft Metro Campus</p>
+                                    <p class="campus">Piliyandala</p>
+                                    <div class="status-badge completed">Completed</div>
+                                </div>
+
+                                <div class="education-card">
+                                    <div class="card-header">
+                                        <h5>Diploma in English</h5>
+                                        <span class="year">2020</span>
+                                    </div>
+                                    <p class="institution">Esoft Metro Campus</p>
+                                    <p class="campus">Piliyandala</p>
+                                    <div class="status-badge completed">Completed</div>
+                                </div>
+
+                                <div class="education-card">
+                                    <div class="card-header">
+                                        <h5>G.C.E. Advanced Level</h5>
+                                        <span class="year">2022</span>
+                                    </div>
+                                    <p class="institution">Central College</p>
+                                    <p class="campus">Piliyandala</p>
+                                    <div class="status-badge completed">Passed</div>
+                                </div>
+
+                                <div class="education-card">
+                                    <div class="card-header">
+                                        <h5>G.C.E. Ordinary Level</h5>
+                                        <span class="year">2019</span>
+                                    </div>
+                                    <p class="institution">Rahula National School</p>
+                                    <p class="campus">Godakawela</p>
+                                    <div class="status-badge completed">Passed</div>
+                                </div>
                             </div>
                         </div>
 
