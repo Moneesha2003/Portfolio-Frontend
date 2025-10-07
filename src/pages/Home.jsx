@@ -130,7 +130,7 @@ function ProjectsSection() {
 }
 
 // Main HomePage Component
-export default function HomePage() {
+export default function Home() {
     const [projects, setProjects] = useState([]);
 
     useEffect(() => {
