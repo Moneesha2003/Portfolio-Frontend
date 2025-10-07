@@ -5,6 +5,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 export default function Navbar() {
   const [activeSection, setActiveSection] = useState("home");
   const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -21,15 +22,14 @@ export default function Navbar() {
   // Call when clicking nav links
   const handleNavClick = (section, e) => {
     if (e) e.preventDefault();
+    setMobileMenuOpen(false); // Close mobile menu when a link is clicked
 
     // For Projects link we want to go to /projects route (not the home anchor)
     if (section === "projects") {
-      // If already on /projects just do nothing (or highlight)
       if (location.pathname === "/projects") {
         setActiveSection("projects");
         return;
       }
-      // If on home and you want to scroll to '#projects' inside home, swap this logic accordingly.
       navigate("/projects");
       setActiveSection("projects");
       return;
@@ -39,9 +39,7 @@ export default function Navbar() {
     if (location.pathname === "/") {
       scrollToSection(section);
     } else {
-      // Navigate to home first, then scroll after a small delay to allow rendering
       navigate("/");
-      // small delay so the Home page DOM has a chance to render
       setTimeout(() => scrollToSection(section), 80);
     }
   };
@@ -77,23 +75,46 @@ export default function Navbar() {
   // Ensure active state reflects current route when mounted / route changed
   useEffect(() => {
     if (location.pathname === "/") {
-      // keep whatever activeSection is (or default to home)
       setActiveSection((prev) => (prev ? prev : "home"));
     } else if (location.pathname.startsWith("/projects")) {
       setActiveSection("projects");
-    } else if (location.pathname.startsWith("/admin")) {
-      // if you have admin routes and want to highlight nothing, you can set ""
-      setActiveSection("");
     } else {
       setActiveSection("");
     }
   }, [location.pathname]);
 
+  // Close mobile menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (mobileMenuOpen && !event.target.closest('.navbar') && !event.target.closest('.mobile-menu-btn')) {
+        setMobileMenuOpen(false);
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+    return () => document.removeEventListener('click', handleClickOutside);
+  }, [mobileMenuOpen]);
+
   return (
-    <nav className={`navbar ${scrolled ? "scrolled" : ""}`}>
+    <nav className={`navbar ${scrolled ? "scrolled" : ""} ${mobileMenuOpen ? "mobile-open" : ""}`}>
       <div className="container">
-        <h1 style={{ cursor: "pointer" }} onClick={(e) => handleNavClick("home", e)}>Moneesha Aravindi</h1>
-        <ul>
+        <h1 style={{ cursor: "pointer" }} onClick={(e) => handleNavClick("home", e)}>
+          Moneesha Aravindi
+        </h1>
+        
+        {/* Mobile Menu Button */}
+        <button 
+          className="mobile-menu-btn"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          aria-label="Toggle menu"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        {/* Navigation Links */}
+        <ul className={`nav-links ${mobileMenuOpen ? "active" : ""}`}>
           <li>
             <a
               href="#home"
@@ -113,7 +134,6 @@ export default function Navbar() {
             </a>
           </li>
           <li>
-            {/* Projects link goes to the Projects route */}
             <a
               href="/projects"
               className={activeSection === "projects" ? "active" : ""}
@@ -132,6 +152,9 @@ export default function Navbar() {
             </a>
           </li>
         </ul>
+
+        {/* Mobile Menu Overlay */}
+        {mobileMenuOpen && <div className="mobile-overlay" onClick={() => setMobileMenuOpen(false)}></div>}
       </div>
     </nav>
   );
